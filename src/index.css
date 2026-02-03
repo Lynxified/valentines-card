@@ -1,0 +1,272 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 350 100% 97%;
+    --foreground: 350 60% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 350 60% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 350 60% 20%;
+    --primary: 355 70% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 350 50% 90%;
+    --secondary-foreground: 350 60% 20%;
+    --muted: 350 30% 92%;
+    --muted-foreground: 350 20% 45%;
+    --accent: 45 100% 50%;
+    --accent-foreground: 350 60% 20%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 350 30% 85%;
+    --input: 350 30% 85%;
+    --ring: 355 70% 55%;
+    --radius: 0.625rem;
+    
+    /* Custom Valentine's Colors */
+    --valentine-red: #e63946;
+    --valentine-dark-red: #c1121f;
+    --valentine-pink: #ffccd5;
+    --valentine-light-pink: #fff0f3;
+    --valentine-cream: #fff5f7;
+    --valentine-gold: #ffd700;
+    --valentine-purple: #4a1942;
+    
+    /* Animation Easings */
+    --ease-romantic: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-dramatic: cubic-bezier(0.87, 0, 0.13, 1);
+    --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --ease-silk: cubic-bezier(0.25, 0.1, 0.25, 1);
+    --ease-heartbeat: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Typography */
+.font-display {
+  font-family: 'Dancing Script', cursive;
+}
+
+.font-body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Envelope 3D Styles */
+.envelope-container {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.envelope {
+  transform-style: preserve-3d;
+  transition: transform 0.4s var(--ease-romantic);
+}
+
+.envelope-flap {
+  transform-origin: top center;
+  transition: transform 1s var(--ease-romantic);
+}
+
+.envelope:hover:not(.opening) {
+  transform: rotateX(5deg) rotateY(5deg);
+}
+
+/* Card 3D Flip Styles */
+.card-container {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.tarot-card {
+  transform-style: preserve-3d;
+  transition: all 0.6s var(--ease-romantic);
+}
+
+.card-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.tarot-card.flipped {
+  transform: rotateY(180deg);
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.4); }
+  50% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.8); }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  10% { transform: scale(1.1); }
+  20% { transform: scale(1); }
+  30% { transform: scale(1.1); }
+  40% { transform: scale(1); }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(var(--radius)) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(var(--radius)) rotate(-360deg); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes hand-reach {
+  0% { transform: translateY(100%) rotate(-10deg); }
+  60% { transform: translateY(0%) rotate(0deg); }
+  80% { transform: translateY(-5%) rotate(2deg); }
+  100% { transform: translateY(0%) rotate(0deg); }
+}
+
+@keyframes card-lift {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-30px) scale(1.05); }
+  100% { transform: translateY(-50px) scale(1.1); }
+}
+
+@keyframes fireworks-burst {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-fade {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.5); }
+}
+
+/* Utility Classes */
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+.animate-hand-reach {
+  animation: hand-reach 1s var(--ease-romantic) forwards;
+}
+
+.animate-card-lift {
+  animation: card-lift 0.6s var(--ease-romantic) forwards;
+}
+
+/* Gradient Backgrounds */
+.bg-valentine-gradient {
+  background: linear-gradient(135deg, #fff0f3 0%, #ffccd5 50%, #ffe4e9 100%);
+}
+
+.bg-valentine-dark {
+  background: linear-gradient(135deg, #4a1942 0%, #2d0f29 100%);
+}
+
+/* Card Arc Positions */
+.card-arc-1 { transform: rotateY(-30deg) translateX(-180px) translateZ(-80px); }
+.card-arc-2 { transform: rotateY(-15deg) translateX(-90px) translateZ(-40px); }
+.card-arc-3 { transform: rotateY(0deg) translateX(0) translateZ(0); }
+.card-arc-4 { transform: rotateY(15deg) translateX(90px) translateZ(-40px); }
+.card-arc-5 { transform: rotateY(30deg) translateX(180px) translateZ(-80px); }
+
+/* Hover Effects */
+.hover-lift {
+  transition: transform 0.4s var(--ease-romantic), box-shadow 0.4s var(--ease-romantic);
+}
+
+.hover-lift:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Glass Effect */
+.glass {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fff0f3;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e63946;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c1121f;
+}
+
+/* Selection */
+::selection {
+  background: #ffccd5;
+  color: #4a1942;
+}
