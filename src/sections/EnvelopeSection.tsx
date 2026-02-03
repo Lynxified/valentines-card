@@ -35,9 +35,9 @@ export function EnvelopeSection({ onOpen }: EnvelopeSectionProps) {
       
       {/* Envelope Container */}
       <div 
-        className="envelope-container relative cursor-pointer"
-        onClick={handleClick}
-        ref={envelopeRef}
+  className="envelope-container relative cursor-pointer"
+  onClick={handleClick}
+  ref={envelopeRef}
       >
         <div 
           className={`envelope relative w-72 h-48 md:w-96 md:h-56 ${isOpening ? 'opening' : ''}`}
@@ -48,13 +48,11 @@ export function EnvelopeSection({ onOpen }: EnvelopeSectionProps) {
         >
           {/* Envelope Body */}
           <div 
-            className="absolute inset-0 rounded-lg shadow-2xl"
-            style={{
-              background: 'linear-gradient(145deg, #fff5f7 0%, #ffe4e9 50%, #ffccd5 100%)',
-              boxShadow: isOpening 
-                ? '0 30px 60px rgba(230, 57, 70, 0.4)' 
-                : '0 20px 40px rgba(0, 0, 0, 0.2)'
-            }}
+    className={`envelope relative w-72 h-48 md:w-96 md:h-56 ${isOpening ? 'opening' : ''}`}
+    style={{
+      transform: isOpening ? 'scale(1.1)' : 'scale(1)',
+      transition: 'transform 0.8s var(--ease-dramatic)'
+    }}
           >
             {/* Envelope Pattern */}
             <div className="absolute inset-0 opacity-20">
@@ -68,41 +66,38 @@ export function EnvelopeSection({ onOpen }: EnvelopeSectionProps) {
           
           {/* Letter (hidden initially, emerges when opening) */}
           <div 
-            className="absolute left-1/2 -translate-x-1/2 w-64 md:w-80 rounded shadow-lg transition-all duration-700"
-            style={{
-              height: showLetter ? '200px' : '0px',
-              bottom: showLetter ? '60%' : '20%',
-              opacity: showLetter ? 1 : 0,
-              background: 'linear-gradient(180deg, #ffffff 0%, #fff5f7 100%)',
-              transform: `translateX(-50%) translateY(${showLetter ? '-20px' : '0'})`,
-              transitionTimingFunction: 'var(--ease-romantic)'
-            }}
+        className="absolute left-1/2 top-1/4 -translate-x-1/2 w-64 md:w-80 rounded shadow-lg flex flex-col items-center justify-center z-30"
+        style={{
+          background: 'linear-gradient(180deg, #ffffff 0%, #fff5f7 100%)',
+          opacity: showLetter ? 1 : 0,
+          transform: showLetter ? 'translate(-50%, 0)' : 'translate(-50%, 20px)',
+          transition: 'all 0.7s var(--ease-romantic)'
+        }}
           >
             {/* Letter Content */}
-            <div className="p-6 h-full flex flex-col items-center justify-center">
-              <Heart className="w-8 h-8 text-valentine-red mb-3 animate-heartbeat" />
-              <p className="font-display text-2xl text-valentine-red text-center">
-                Open Your Heart
+        <div className="p-6 flex flex-col items-center justify-center">
+          <Heart className="w-8 h-8 text-valentine-red mb-3 animate-heartbeat" />
+          <p className="font-display text-2xl text-valentine-red text-center">
+            Open Your Heart
               </p>
             </div>
           </div>
           
           {/* Envelope Flap */}
           <div 
-            className="envelope-flap absolute top-0 left-0 right-0 h-1/2 overflow-hidden"
-            style={{
-              transformOrigin: 'top center',
-              transform: isOpening ? 'rotateX(-180deg)' : 'rotateX(0deg)',
-              transition: 'transform 1s var(--ease-romantic)',
-              zIndex: 10
-            }}
+      className="envelope-flap absolute top-0 left-0 right-0 h-1/2 overflow-hidden z-20"
+      style={{
+        transformOrigin: 'top center',
+        transform: isOpening ? 'rotateX(-180deg)' : 'rotateX(0deg)',
+        transition: 'transform 1s var(--ease-romantic)',
+      }}
           >
             <div 
-              className="absolute top-0 left-0 right-0 h-full"
-              style={{
-                background: 'linear-gradient(145deg, #ffccd5 0%, #ffb3c1 50%, #ffccd5 100%)',
-                clipPath: 'polygon(0 0, 50% 100%, 100% 0)'
-              }}
+        className="absolute top-0 left-0 right-0 h-full"
+        style={{
+          background: 'linear-gradient(145deg, #ffccd5 0%, #ffb3c1 50%, #ffccd5 100%)',
+          clipPath: 'polygon(0 0, 50% 100%, 100% 0)'
+        }}
             />
           </div>
           
